@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let mainVM : MainViewModel
+    @ObservedObject var mainVM : MainViewModel
     let wordVM: WordViewModel
         
     init(mainVM: MainViewModel, wordVM: WordViewModel){
@@ -54,11 +54,11 @@ struct AttemptsCounter: View {
         VStack(alignment: .trailing) {
             HStack {
                 Text("Correct attempts: ")
-                Text(self.correctAttempts)
+                Text("\(vm.correctAttempts)")
             }
             HStack {
                 Text("Wrong attempts: ")
-                Text(self.wrongAttempts)
+                Text("\(vm.wrongAttempts)")
             }
         }
         .padding()
@@ -91,10 +91,12 @@ struct MainBody: View {
 
 struct Buttons: View {
     var vm : MainViewModel
+    
     var body: some View {
         HStack(spacing: 20) {
             Button("Correct"){
-                print("Correct")
+                print("Wrong button pressed")
+                vm.correctButton(correct: true)
             }
             .font(.title)
             .buttonStyle(.bordered)
@@ -104,7 +106,8 @@ struct Buttons: View {
             .frame(width: 150, height: 70)
             
             Button("Wrong"){
-                print("Wrong")
+                print("Wrong button pressed")
+                vm.correctButton(correct: false)
             }
             .font(.title)
             .buttonStyle(.bordered)
