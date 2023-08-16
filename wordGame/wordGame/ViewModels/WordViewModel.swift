@@ -49,7 +49,7 @@ class WordViewModel {
         } else {
             // Choose a random Spanish word for incorrect pairing
             let incorrectSpanishIndex = Int.random(in: 0..<wordPairs.count)
-            selectedPair.spa = wordPairs[incorrectSpanishIndex].spa
+            selectedPair.translation = wordPairs[incorrectSpanishIndex].translation
             selectedPair.correct = false
             return selectedPair
         }

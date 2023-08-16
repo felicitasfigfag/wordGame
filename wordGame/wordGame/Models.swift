@@ -8,13 +8,13 @@
 import Foundation
 
 struct WordPair: Codable {
-    var eng: String
-    var spa: String
+    var original: String
+    var translation: String
     var correct: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case eng = "text_eng"
-        case spa = "text_spa"
+        case original = "text_eng"
+        case translation = "text_spa"
     }
 }
 

@@ -8,16 +8,17 @@
 import Foundation
 
 class MainViewModel : ObservableObject {
+    
     var wordVM: WordViewModel
     @Published var correctAttempts: Int = 0
     @Published var wrongAttempts: Int = 0
     @Published var originalWord: String = "This is an English word"
     @Published var translatedWord: String = "This is a random Spanish translation"
     private var timer: Timer?
-    @Published var shownPair : WordPair = WordPair(eng: "", spa: ""){
+    @Published var shownPair : WordPair = WordPair(original: "", translation: ""){
         didSet{
-            originalWord = shownPair.eng
-            translatedWord = shownPair.spa
+            originalWord = shownPair.original
+            translatedWord = shownPair.translation
         }
     }
     
@@ -44,6 +45,7 @@ class MainViewModel : ObservableObject {
             self.wrongAttempts += 1
         }
     }
+    
     func startTimer() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] _ in
