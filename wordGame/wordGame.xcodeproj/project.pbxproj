@@ -15,6 +15,10 @@
 		192BB08A2A8BB96E008172FB /* wordGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0892A8BB96E008172FB /* wordGameUITests.swift */; };
 		192BB08C2A8BB96E008172FB /* wordGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB08B2A8BB96E008172FB /* wordGameUITestsLaunchTests.swift */; };
 		192BB0992A8BBB1F008172FB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0982A8BBB1F008172FB /* MainViewModel.swift */; };
+		192BB09C2A8BD420008172FB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB09B2A8BD420008172FB /* Models.swift */; };
+		192BB09E2A8BD7D6008172FB /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 192BB09D2A8BD7D5008172FB /* words.json */; };
+		192BB0A02A8BDADD008172FB /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB09F2A8BDADD008172FB /* WordViewModel.swift */; };
+		192BB0A22A8BDB41008172FB /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0A12A8BDB41008172FB /* WordService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		192BB0892A8BB96E008172FB /* wordGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordGameUITests.swift; sourceTree = "<group>"; };
 		192BB08B2A8BB96E008172FB /* wordGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		192BB0982A8BBB1F008172FB /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		192BB09B2A8BD420008172FB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		192BB09D2A8BD7D5008172FB /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
+		192BB09F2A8BDADD008172FB /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
+		192BB0A12A8BDB41008172FB /* WordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +104,14 @@
 		192BB06D2A8BB96D008172FB /* wordGame */ = {
 			isa = PBXGroup;
 			children = (
+				192BB0A42A8BDBB3008172FB /* Views */,
+				192BB0A32A8BDBA2008172FB /* ViewModels */,
+				192BB09D2A8BD7D5008172FB /* words.json */,
 				192BB06E2A8BB96D008172FB /* wordGameApp.swift */,
-				192BB0702A8BB96D008172FB /* ContentView.swift */,
+				192BB09B2A8BD420008172FB /* Models.swift */,
+				192BB0A12A8BDB41008172FB /* WordService.swift */,
 				192BB0722A8BB96D008172FB /* Assets.xcassets */,
 				192BB0742A8BB96D008172FB /* Preview Content */,
-				192BB0982A8BBB1F008172FB /* MainViewModel.swift */,
 			);
 			path = wordGame;
 			sourceTree = "<group>";
@@ -128,6 +139,23 @@
 				192BB08B2A8BB96E008172FB /* wordGameUITestsLaunchTests.swift */,
 			);
 			path = wordGameUITests;
+			sourceTree = "<group>";
+		};
+		192BB0A32A8BDBA2008172FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				192BB09F2A8BDADD008172FB /* WordViewModel.swift */,
+				192BB0982A8BBB1F008172FB /* MainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		192BB0A42A8BDBB3008172FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				192BB0702A8BB96D008172FB /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192BB09E2A8BD7D6008172FB /* words.json in Resources */,
 				192BB0762A8BB96D008172FB /* Preview Assets.xcassets in Resources */,
 				192BB0732A8BB96D008172FB /* Assets.xcassets in Resources */,
 			);
@@ -263,6 +292,9 @@
 				192BB0712A8BB96D008172FB /* ContentView.swift in Sources */,
 				192BB06F2A8BB96D008172FB /* wordGameApp.swift in Sources */,
 				192BB0992A8BBB1F008172FB /* MainViewModel.swift in Sources */,
+				192BB0A02A8BDADD008172FB /* WordViewModel.swift in Sources */,
+				192BB09C2A8BD420008172FB /* Models.swift in Sources */,
+				192BB0A22A8BDB41008172FB /* WordService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

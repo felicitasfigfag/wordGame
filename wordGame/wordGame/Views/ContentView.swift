@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    var vm = MainViewModel()
+    let mainVM : MainViewModel
+    let wordVM: WordViewModel
+        
+    init(mainVM: MainViewModel, wordVM: WordViewModel){
+        self.mainVM = mainVM
+        self.wordVM = wordVM
+    }
     
     var body: some View {
         ZStack {
             VStack {
                 HStack {
                     Spacer()
-                    AttemptsCounter(vm: vm)
+                    AttemptsCounter(vm: mainVM)
                 }
                 Spacer()
             }
-            MainBody(vm: vm)
+            MainBody(vm: mainVM)
             
             VStack {
                 Spacer()
-                Buttons(vm: vm)
+                Buttons(vm: mainVM)
             }
         }
         .padding(20)
@@ -116,9 +122,9 @@ struct Buttons: View {
 
 
 
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(mainVM: MainViewModel(wordVM: WordViewModel(service: WordService())))
+//    }
+//}
