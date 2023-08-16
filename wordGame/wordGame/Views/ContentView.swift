@@ -95,8 +95,8 @@ struct Buttons: View {
     var body: some View {
         HStack(spacing: 20) {
             Button("Correct"){
-                print("Wrong button pressed")
-                vm.correctButton(correct: true)
+                ///True represents Correct and False represents Wrong
+                vm.handleUserSelection(selection: true)
             }
             .font(.title)
             .buttonStyle(.bordered)
@@ -106,8 +106,7 @@ struct Buttons: View {
             .frame(width: 150, height: 70)
             
             Button("Wrong"){
-                print("Wrong button pressed")
-                vm.correctButton(correct: false)
+                vm.handleUserSelection(selection: false)
             }
             .font(.title)
             .buttonStyle(.bordered)

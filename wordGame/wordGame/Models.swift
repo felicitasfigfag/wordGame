@@ -21,3 +21,9 @@ struct WordPair: Codable {
 struct WordList: Codable {
     var words: [WordPair]
 }
+
+extension Bool {
+    var toggleValue: Bool {
+        return !self
+    }
+}
