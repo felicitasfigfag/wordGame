@@ -36,6 +36,14 @@ struct ContentView: View {
         .alert(isPresented: $mainVM.showError) {
             Alert(title: Text("Error"), message: Text(mainVM.errorMessage), dismissButton: .default(Text("Ok")))
         }
+        .alert(item: $mainVM.endGameAlert) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message),
+                  dismissButton: .destructive(Text(alert.buttonText), action: {
+                      alert.action?()
+                      exit(0) 
+            }))
+        }
+
     }
 }
 
