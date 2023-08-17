@@ -14,14 +14,12 @@ class UserDefaultsManagerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Reset UserDefaults para empezar desde un estado limpio
         let domain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: domain)
         UserDefaults.standard.synchronize()
     }
     
     override func tearDown() {
-        // Limpia cualquier cambio realizado durante las pruebas
         let domain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: domain)
         UserDefaults.standard.synchronize()

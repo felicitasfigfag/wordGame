@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class WordGameManager {
     private var wordService: WordServiceProtocol
@@ -46,7 +47,6 @@ class WordGameManager {
     func getRandomPair() -> WordPair? {
         if unshownIndices.isEmpty {
             setUnshownIndices()
-            // Check if unshownIndices is still empty after attempting to set it
             if unshownIndices.isEmpty {
                 return nil
             }
@@ -56,7 +56,6 @@ class WordGameManager {
         let randomIndex = unshownIndices[randomPosition]
         unshownIndices.remove(at: randomPosition)
 
-        // Guarda después de remover un índice
         UserDefaultsManager.shared.set(unshownIndices, for: .unshownIndices)
 
         // Decide if the pair will be shown as correct or incorrect
@@ -82,3 +81,8 @@ class WordGameManager {
     
 }
 
+
+class AlertManager: ObservableObject {
+    @Published var showAlert: Bool = false
+    var alert: Alert!
+}

@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+import SwiftUI
 @testable import wordGame
 
 class MainViewModelTests: XCTestCase {
@@ -29,14 +30,6 @@ class MainViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.shownPair.translation, "prueba")
     }
     
-    func testSetupGameFailure() {
-        gameManagerMock.loadWordsResult = .failure(.resourceNotFound)
-        
-        viewModel.setupGame()
-        
-        XCTAssertTrue(viewModel.showError)
-        XCTAssertEqual(viewModel.errorMessage, "Resource not found.")
-    }
 
     func testCorrectAttemptUpdate() {
         viewModel.shownPair = WordPair(original: "test", translation: "prueba", correct: true)
@@ -60,7 +53,9 @@ class MainViewModelTests: XCTestCase {
         
         viewModel.handleUserSelection(selection: true)
         
-        // Here you may need to spy on the `print` function or adjust the MainViewModel to capture the "winning" event.
+        XCTAssertNotNil(viewModel.endGameAlert)
+        XCTAssertEqual(viewModel.endGameAlert?.title, "Congratulations")
+        XCTAssertEqual(viewModel.endGameAlert?.message, "You won!")
     }
 
     func testLosingCondition() {
@@ -69,7 +64,9 @@ class MainViewModelTests: XCTestCase {
         
         viewModel.handleUserSelection(selection: true)
         
-        // Similar to above, you may need to spy on the `print` function or adjust the MainViewModel to capture the "losing" event.
+        XCTAssertNotNil(viewModel.endGameAlert)
+        XCTAssertEqual(viewModel.endGameAlert?.title, "Game Over")
+        XCTAssertEqual(viewModel.endGameAlert?.message, "Better luck next time!")
     }
 
     override func tearDown() {

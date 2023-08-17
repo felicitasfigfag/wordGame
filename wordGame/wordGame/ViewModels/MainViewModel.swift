@@ -8,11 +8,6 @@
 import Foundation
 import SwiftUI
 
-class AlertManager: ObservableObject {
-    @Published var showAlert: Bool = false
-    var alert: Alert!
-}
-
 
 class MainViewModel : ObservableObject {
     
@@ -36,6 +31,7 @@ class MainViewModel : ObservableObject {
     @Published var showError: Bool = false
     @Published var errorMessage: String = ""
     @Published var endGameAlert: CustomAlert?
+    @Published var showByeView = false 
     
     private var timer: Timer?
     
@@ -85,6 +81,18 @@ class MainViewModel : ObservableObject {
             displayError("Resource not found.")
         case .dataLoadError:
             displayError("Data loading error.")
+        }
+    }
+    
+    func closeApp(){
+        UserDefaults.standard.synchronize()
+        exit(0) 
+    }
+    func showByeScreenAndCloseApp() {
+        self.showByeView = true
+        UserDefaults.standard.synchronize()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            exit(0)
         }
     }
 }

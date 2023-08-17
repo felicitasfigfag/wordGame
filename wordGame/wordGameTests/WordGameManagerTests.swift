@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import wordGame // Reemplace 'YourModuleName' con el nombre de su módulo
+@testable import wordGame
 
 class WordViewModelTests: XCTestCase {
 
@@ -113,7 +113,7 @@ class WordViewModelTests: XCTestCase {
 
         let observedProbability = Double(correctCount) / Double(numberOfTries)
         let expectedProbability = 0.25
-        let marginOfError = 0.05 // Aceptaremos un 5% de margen de error
+        let marginOfError = 0.05 // 5% error margin accepted
 
         XCTAssert(abs(observedProbability - expectedProbability) <= marginOfError, "Observed probability was \(observedProbability) which is outside the margin of error from the expected probability of \(expectedProbability).")
     }

@@ -8,11 +8,9 @@
 import Foundation
 class WordGameManagerMock: WordGameManager {
 
-    // Mock data to return
     var loadWordsResult: Result<[WordPair], WordServiceError> = .success([])
     var randomPairToReturn: WordPair?
 
-    // Mock the WordService
     init() {
         let mockService = WordServiceMock()
         super.init(service: mockService)

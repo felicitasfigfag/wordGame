@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var mainVM : MainViewModel
     let gameMng: WordGameManager
+   
         
     init(mainVM: MainViewModel, gameMng: WordGameManager){
         self.mainVM = mainVM
@@ -31,16 +32,21 @@ struct ContentView: View {
                 Spacer()
                 Buttons(vm: mainVM)
             }
+            .padding(20)
+            if mainVM.showByeView {
+                ByeView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+
         }
-        .padding(20)
+        
         .alert(isPresented: $mainVM.showError) {
             Alert(title: Text("Error"), message: Text(mainVM.errorMessage), dismissButton: .default(Text("Ok")))
         }
         .alert(item: $mainVM.endGameAlert) { alert in
-            Alert(title: Text(alert.title), message: Text(alert.message),
-                  dismissButton: .destructive(Text(alert.buttonText), action: {
-                      alert.action?()
-                      exit(0) 
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .destructive(Text(alert.buttonText), action: {
+                alert.action?()
+                mainVM.showByeScreenAndCloseApp()
             }))
         }
         .onAppear {

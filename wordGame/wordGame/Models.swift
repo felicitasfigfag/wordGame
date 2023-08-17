@@ -47,7 +47,7 @@ enum WordServiceError: Error, Equatable {
 }
 
 struct CustomAlert: Identifiable {
-    var id = UUID() // Para conformar al protocolo Identifiable
+    var id = UUID() 
     var title: String
     var message: String
     var buttonText: String
