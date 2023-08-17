@@ -14,11 +14,16 @@ class WordGameManager {
     
     init(service: WordServiceProtocol) {
         self.wordService = service
+        loadUnshownIndices()
         loadWords()
-        setUnshownIndices()
     }
     
- 
+    private func loadUnshownIndices() {
+        self.unshownIndices = UserDefaultsManager.shared.get(.unshownIndices) ?? []
+        if unshownIndices.isEmpty {
+            setUnshownIndices()
+        }
+    }
     
     //Get data from service
     func loadWords() -> Result<[WordPair], WordServiceError> {
@@ -33,8 +38,9 @@ class WordGameManager {
     }
 
     
-    func setUnshownIndices(){
+    func setUnshownIndices() {
         self.unshownIndices = Array(0..<wordPairs.count)
+        UserDefaultsManager.shared.set(unshownIndices, for: .unshownIndices)
     }
     
     func getRandomPair() -> WordPair? {
@@ -49,12 +55,15 @@ class WordGameManager {
         let randomPosition = Int.random(in: 0..<unshownIndices.count)
         let randomIndex = unshownIndices[randomPosition]
         unshownIndices.remove(at: randomPosition)
-        
+
+        // Guarda después de remover un índice
+        UserDefaultsManager.shared.set(unshownIndices, for: .unshownIndices)
+
         // Decide if the pair will be shown as correct or incorrect
         let isCorrect = Double.random(in: 0...1) <= 0.25
         guard randomIndex < wordPairs.count else { return nil }
         var selectedPair = wordPairs[randomIndex]
-        
+
         if isCorrect {
             selectedPair.correct = true
             return selectedPair
@@ -67,6 +76,7 @@ class WordGameManager {
             return selectedPair
         }
     }
+
 
 
     

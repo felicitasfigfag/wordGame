@@ -23,11 +23,21 @@ class MainViewModel : ObservableObject {
     }
     @Published var showError: Bool = false
     @Published var errorMessage: String = ""
+    private let correctAttemptsKey = "CorrectAttempts"
+    private let wrongAttemptsKey = "WrongAttempts"
     
     init(gameMng: WordGameManager) {
         self.gameMng = gameMng
+        setupAttemptsFromUserDefaults()
         setupGame()
     }
+    
+    private func setupAttemptsFromUserDefaults() {
+        self.correctAttempts = UserDefaultsManager.shared.get(.correctAttempts) ?? 0
+        self.wrongAttempts = UserDefaultsManager.shared.get(.wrongAttempts) ?? 0
+    }
+        
+    
     func setupGame() {
         let result = gameMng.loadWords()
         switch result {
@@ -65,19 +75,26 @@ class MainViewModel : ObservableObject {
 
     
     func handleUserSelection(selection: Bool) {
-        updateAttempts(selection: selection)
-        
-        if correctAttempts >= 15 {
+        if correctAttempts == 15 {
             print("¡Has ganado!")
             timer?.invalidate()
-            
-        } else if wrongAttempts >= 3 {
+            resetAttemptsInUserDefaults()
+        } else if wrongAttempts == 3 {
             print("Game Over")
             timer?.invalidate()
-            
+            resetAttemptsInUserDefaults()
         } else {
+            updateAttempts(selection: selection)
+            // Guarda los intentos después de cada selección
+            UserDefaultsManager.shared.set(correctAttempts, for: .correctAttempts)
+            UserDefaultsManager.shared.set(wrongAttempts, for: .wrongAttempts)
             setShownPair()
         }
+    }
+
+    private func resetAttemptsInUserDefaults() {
+        UserDefaultsManager.shared.set(0, for: .correctAttempts)
+        UserDefaultsManager.shared.set(0, for: .wrongAttempts)
     }
 
     func handleLoadingError(error: WordServiceError) {
