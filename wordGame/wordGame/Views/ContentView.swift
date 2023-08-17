@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var mainVM : MainViewModel
-    let wordVM: WordViewModel
+    let gameMng: WordGameManager
         
-    init(mainVM: MainViewModel, wordVM: WordViewModel){
+    init(mainVM: MainViewModel, gameMng: WordGameManager){
         self.mainVM = mainVM
-        self.wordVM = wordVM
+        self.gameMng = gameMng
     }
     
     var body: some View {
@@ -33,6 +33,9 @@ struct ContentView: View {
             }
         }
         .padding(20)
+        .alert(isPresented: $mainVM.showError) {
+            Alert(title: Text("Error"), message: Text(mainVM.errorMessage), dismissButton: .default(Text("Ok")))
+        }
     }
 }
 
@@ -95,8 +98,8 @@ struct Buttons: View {
     var body: some View {
         HStack(spacing: 20) {
             Button("Correct"){
-                print("Wrong button pressed")
-                vm.correctButton(correct: true)
+                ///True represents Correct and False represents Wrong
+                vm.handleUserSelection(selection: true)
             }
             .font(.title)
             .buttonStyle(.bordered)
@@ -106,8 +109,7 @@ struct Buttons: View {
             .frame(width: 150, height: 70)
             
             Button("Wrong"){
-                print("Wrong button pressed")
-                vm.correctButton(correct: false)
+                vm.handleUserSelection(selection: false)
             }
             .font(.title)
             .buttonStyle(.bordered)
@@ -128,6 +130,6 @@ struct Buttons: View {
 //
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ContentView(mainVM: MainViewModel(wordVM: WordViewModel(service: WordService())))
+//        ContentView(mainVM: MainViewModel(gameMng: WordGameManager(service: WordService())))
 //    }
 //}
