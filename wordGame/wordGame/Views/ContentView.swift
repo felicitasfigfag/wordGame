@@ -33,6 +33,9 @@ struct ContentView: View {
             }
         }
         .padding(20)
+        .alert(isPresented: $mainVM.showError) {
+            Alert(title: Text("Error"), message: Text(mainVM.errorMessage), dismissButton: .default(Text("Ok")))
+        }
     }
 }
 

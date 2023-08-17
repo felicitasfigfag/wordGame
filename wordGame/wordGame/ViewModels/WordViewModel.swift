@@ -18,15 +18,23 @@ class WordViewModel {
         setUnshownIndices()
     }
     
-    func setUnshownIndices(){
-        self.unshownIndices = Array(0..<wordPairs.count)
-    }
+ 
     
     //Get data from service
-    private func loadWords() {
-        if let loadedWords = wordService.loadWordData() {
-            self.wordPairs = loadedWords
+    func loadWords() -> Result<[WordPair], WordServiceError> {
+        let result = wordService.loadWordData()
+        switch result {
+        case .success(let words):
+            self.wordPairs = words
+            return .success(words)
+        case .failure(let error):
+            return .failure(error)
         }
+    }
+
+    
+    func setUnshownIndices(){
+        self.unshownIndices = Array(0..<wordPairs.count)
     }
     
     func getRandomPair() -> WordPair? {

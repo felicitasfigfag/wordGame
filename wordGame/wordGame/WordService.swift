@@ -8,18 +8,19 @@
 import Foundation
 
 class WordService {
-    func loadWordData() -> [WordPair]? {
-        print("Service activated")
+    
+    func loadWordData() -> Result<[WordPair], WordServiceError> {
         if let url = Bundle.main.url(forResource: "words", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let words = try decoder.decode([WordPair].self, from: data)
-                return words
+                return .success(words)
             } catch {
-                print("Error loading or parsing JSON:", error)
+                return .failure(.decodingError(error))
             }
         }
-        return nil
+        return .failure(.resourceNotFound)
     }
+
 }

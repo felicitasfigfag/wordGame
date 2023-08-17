@@ -27,3 +27,9 @@ extension Bool {
         return !self
     }
 }
+
+enum WordServiceError: Error {
+    case resourceNotFound
+    case dataLoadError
+    case decodingError(Error)
+}

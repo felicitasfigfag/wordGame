@@ -21,13 +21,23 @@ class MainViewModel : ObservableObject {
             translatedWord = shownPair.translation
         }
     }
+    @Published var showError: Bool = false
+    @Published var errorMessage: String = ""
     
-    init(wordVM: WordViewModel){
+    init(wordVM: WordViewModel) {
         self.wordVM = wordVM
-        setShownPair()
-        
+        setupGame()
     }
-    
+    func setupGame() {
+        let result = wordVM.loadWords()
+        switch result {
+        case .success:
+            setShownPair()
+        case .failure(let error):
+            handleLoadingError(error: error)
+        }
+    }
+
     func setShownPair(){
         guard let randomPair = wordVM.getRandomPair() else {
             return
@@ -36,8 +46,7 @@ class MainViewModel : ObservableObject {
         startTimer()
     }
     
-    
-    
+ 
     func updateAttempts(selection: Bool){
         if selection == shownPair.correct {
             self.correctAttempts += 1
@@ -71,4 +80,19 @@ class MainViewModel : ObservableObject {
         }
     }
 
+    func handleLoadingError(error: WordServiceError) {
+        switch error {
+        case .decodingError(let decodingError):
+            displayError("Decoding error: \(decodingError.localizedDescription)")
+        case .resourceNotFound:
+            displayError("Resource not found.")
+        case .dataLoadError:
+            displayError("Data loading error.")
+        }
+    }
+
+    func displayError(_ message: String) {
+        self.errorMessage = message
+        self.showError.toggle()
+    }
 }
