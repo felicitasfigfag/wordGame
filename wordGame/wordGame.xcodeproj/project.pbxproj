@@ -26,6 +26,7 @@
 		192BB0B92A8E783B008172FB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0B82A8E783B008172FB /* UserDefaultsManager.swift */; };
 		192BB0BB2A8E7B66008172FB /* UserDefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0BA2A8E7B66008172FB /* UserDefaultsManagerTests.swift */; };
 		192BB0C12A8E98CB008172FB /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0C02A8E98CB008172FB /* SplashScreen.swift */; };
+		192BB0C32A8E9C12008172FB /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0C22A8E9C12008172FB /* InstructionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		192BB0B82A8E783B008172FB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		192BB0BA2A8E7B66008172FB /* UserDefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManagerTests.swift; sourceTree = "<group>"; };
 		192BB0C02A8E98CB008172FB /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		192BB0C22A8E9C12008172FB /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			children = (
 				192BB0702A8BB96D008172FB /* ContentView.swift */,
 				192BB0C02A8E98CB008172FB /* SplashScreen.swift */,
+				192BB0C22A8E9C12008172FB /* InstructionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192BB0C32A8E9C12008172FB /* InstructionsView.swift in Sources */,
 				192BB0C12A8E98CB008172FB /* SplashScreen.swift in Sources */,
 				192BB0712A8BB96D008172FB /* ContentView.swift in Sources */,
 				192BB06F2A8BB96D008172FB /* wordGameApp.swift in Sources */,

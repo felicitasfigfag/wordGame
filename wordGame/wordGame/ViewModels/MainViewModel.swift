@@ -17,34 +17,32 @@ class AlertManager: ObservableObject {
 class MainViewModel : ObservableObject {
     
     var gameMng: WordGameManager
+    var alertManager = AlertManager()
+    
+    ///Attempts
     @Published var correctAttempts: Int = 0
     @Published var wrongAttempts: Int = 0
+    
+    ///Pair
     @Published var originalWord: String = "This is an English word"
     @Published var translatedWord: String = "This is a random Spanish translation"
-    private var timer: Timer?
+    
     @Published var shownPair : WordPair = WordPair(original: "", translation: ""){
         didSet{
             originalWord = shownPair.original
-            translatedWord = shownPair.translation
-        }
+            translatedWord = shownPair.translation}
     }
+    ///Alerts
     @Published var showError: Bool = false
     @Published var errorMessage: String = ""
-    private let correctAttemptsKey = "CorrectAttempts"
-    private let wrongAttemptsKey = "WrongAttempts"
+    @Published var endGameAlert: CustomAlert?
     
-    var alertManager = AlertManager()
-    @Published var endGameAlert: CustomAlert? {
-        didSet{
-            print("Set end game alert: ", endGameAlert?.title)
-        }
-    }
-
+    private var timer: Timer?
     
     init(gameMng: WordGameManager) {
         self.gameMng = gameMng
         setupAttemptsFromUserDefaults()
-        setupGame()
+        
     }
     
     func setupGame() {
@@ -58,10 +56,12 @@ class MainViewModel : ObservableObject {
     }
 
     func setShownPair(){
+        timer?.invalidate()
         guard let randomPair = gameMng.getRandomPair() else {
             return
         }
         self.shownPair = randomPair
+        startTimer()
     }
     
     func startTimer() {
@@ -72,28 +72,11 @@ class MainViewModel : ObservableObject {
            }
        }
        
-    func handleUserSelection(selection: Bool) {
-           if (correctAttempts + wrongAttempts) == 15 {
-               print("you won")
-               timer?.invalidate()
-               resetAttemptsInUserDefaults()
-               endGameAlert = CustomAlert(title: "Congratulations", message: "You won!", buttonText: "Close app")
-               
-               
-           } else if wrongAttempts == 3 {
-               print("game over")
-               timer?.invalidate()
-               resetAttemptsInUserDefaults()
-               endGameAlert = CustomAlert(title: "Game Over", message: "Better luck next time!", buttonText: "Close app")
-               
-           } else {
-               updateAttempts(selection: selection)
-               UserDefaultsManager.shared.set(correctAttempts, for: .correctAttempts)
-               UserDefaultsManager.shared.set(wrongAttempts, for: .wrongAttempts)
-               setShownPair()
-           }
-       }
     
+    func handleUserSelection(selection: Bool) {
+        updateAttempts(selection: selection)
+    }
+
     func handleLoadingError(error: WordServiceError) {
         switch error {
         case .decodingError(let decodingError):
@@ -109,6 +92,30 @@ class MainViewModel : ObservableObject {
 
 //Attempts
 extension MainViewModel {
+    
+    func updateAttempts(selection: Bool) {
+        incrementAttempts(isCorrect: selection == shownPair.correct)
+        updateAttemptsInUserDefaults()
+
+        guard shouldContinueGame() else { return }
+
+        setShownPair()
+    }
+
+    func incrementAttempts(isCorrect: Bool) {
+        if isCorrect {
+            self.correctAttempts += 1
+        } else {
+            self.wrongAttempts += 1
+        }
+    }
+
+
+    func updateAttemptsInUserDefaults() {
+        UserDefaultsManager.shared.set(self.correctAttempts, for: .correctAttempts)
+        UserDefaultsManager.shared.set(self.wrongAttempts, for: .wrongAttempts)
+    }
+
     private func setupAttemptsFromUserDefaults() {
         self.correctAttempts = UserDefaultsManager.shared.get(.correctAttempts) ?? 0
         self.wrongAttempts = UserDefaultsManager.shared.get(.wrongAttempts) ?? 0
@@ -119,13 +126,6 @@ extension MainViewModel {
         UserDefaultsManager.shared.set(0, for: .wrongAttempts)
     }
     
-    func updateAttempts(selection: Bool){
-        if selection == shownPair.correct {
-            self.correctAttempts += 1
-        } else {
-            self.wrongAttempts += 1
-        }
-    }
 }
 
 
@@ -135,6 +135,40 @@ extension MainViewModel {
     func displayError(_ message: String) {
         self.alertManager.alert = Alert(title: Text("Error"), message: Text(message), dismissButton: .default(Text("Ok")))
         self.alertManager.showAlert = true
+    }
+
+}
+
+//Game ending
+
+extension MainViewModel {
+    
+    func handleGameWin() {
+        print("you won")
+        timer?.invalidate()
+        resetAttemptsInUserDefaults()
+        endGameAlert = CustomAlert(title: "Congratulations", message: "You won!", buttonText: "Close app")
+    }
+
+    func handleGameOver() {
+        print("game over")
+        timer?.invalidate()
+        resetAttemptsInUserDefaults()
+        endGameAlert = CustomAlert(title: "Game Over", message: "Better luck next time!", buttonText: "Close app")
+    }
+
+    func shouldContinueGame() -> Bool {
+        if self.wrongAttempts == 3 {
+            handleGameOver()
+            return false
+        }
+        
+        if (correctAttempts + wrongAttempts) == 15 {
+            handleGameWin()
+            return false
+        }
+        
+        return true
     }
 
 }

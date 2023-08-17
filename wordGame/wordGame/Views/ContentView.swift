@@ -44,7 +44,7 @@ struct ContentView: View {
             }))
         }
         .onAppear {
-            mainVM.startTimer()
+            mainVM.setupGame()
         }
     }
 }
