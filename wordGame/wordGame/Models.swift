@@ -28,8 +28,20 @@ extension Bool {
     }
 }
 
-enum WordServiceError: Error {
+enum WordServiceError: Error, Equatable {
     case resourceNotFound
     case dataLoadError
     case decodingError(Error)
+    
+    static func == (lhs: WordServiceError, rhs: WordServiceError) -> Bool {
+        switch (lhs, rhs) {
+        case (.resourceNotFound, .resourceNotFound),
+             (.dataLoadError, .dataLoadError):
+            return true
+        case (.decodingError, .decodingError): 
+            return true
+        default:
+            return false
+        }
+    }
 }

@@ -19,6 +19,8 @@
 		192BB09E2A8BD7D6008172FB /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 192BB09D2A8BD7D5008172FB /* words.json */; };
 		192BB0A02A8BDADD008172FB /* WordGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB09F2A8BDADD008172FB /* WordGameManager.swift */; };
 		192BB0A22A8BDB41008172FB /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0A12A8BDB41008172FB /* WordService.swift */; };
+		192BB0B02A8E64D9008172FB /* WordGameManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0AF2A8E64D9008172FB /* WordGameManagerTests.swift */; };
+		192BB0B22A8E652E008172FB /* WordServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0B12A8E652E008172FB /* WordServiceMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		192BB09D2A8BD7D5008172FB /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		192BB09F2A8BDADD008172FB /* WordGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameManager.swift; sourceTree = "<group>"; };
 		192BB0A12A8BDB41008172FB /* WordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordService.swift; sourceTree = "<group>"; };
+		192BB0AF2A8E64D9008172FB /* WordGameManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameManagerTests.swift; sourceTree = "<group>"; };
+		192BB0B12A8E652E008172FB /* WordServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordServiceMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				192BB0752A8BB96D008172FB /* Preview Assets.xcassets */,
+				192BB0B12A8E652E008172FB /* WordServiceMock.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				192BB07F2A8BB96E008172FB /* wordGameTests.swift */,
+				192BB0AF2A8E64D9008172FB /* WordGameManagerTests.swift */,
 			);
 			path = wordGameTests;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 				192BB06F2A8BB96D008172FB /* wordGameApp.swift in Sources */,
 				192BB0992A8BBB1F008172FB /* MainViewModel.swift in Sources */,
 				192BB0A02A8BDADD008172FB /* WordGameManager.swift in Sources */,
+				192BB0B22A8E652E008172FB /* WordServiceMock.swift in Sources */,
 				192BB09C2A8BD420008172FB /* Models.swift in Sources */,
 				192BB0A22A8BDB41008172FB /* WordService.swift in Sources */,
 			);
@@ -303,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				192BB0802A8BB96E008172FB /* wordGameTests.swift in Sources */,
+				192BB0B02A8E64D9008172FB /* WordGameManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
