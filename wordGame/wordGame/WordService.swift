@@ -7,8 +7,12 @@
 
 import Foundation
 
-class WordService {
-    
+protocol WordServiceProtocol {
+    func loadWordData() -> Result<[WordPair], WordServiceError>
+}
+
+class WordService : WordServiceProtocol {
+
     func loadWordData() -> Result<[WordPair], WordServiceError> {
         if let url = Bundle.main.url(forResource: "words", withExtension: "json") {
             do {

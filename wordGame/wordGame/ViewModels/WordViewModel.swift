@@ -8,11 +8,11 @@
 import Foundation
 
 class WordViewModel {
-    private var wordService: WordService
+    private var wordService: WordServiceProtocol
     var wordPairs: [WordPair] = []
     var unshownIndices: [Int] = []
     
-    init(service: WordService) {
+    init(service: WordServiceProtocol) {
         self.wordService = service
         loadWords()
         setUnshownIndices()
