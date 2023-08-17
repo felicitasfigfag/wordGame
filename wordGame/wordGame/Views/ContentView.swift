@@ -43,7 +43,9 @@ struct ContentView: View {
                       exit(0) 
             }))
         }
-
+        .onAppear {
+            mainVM.startTimer()
+        }
     }
 }
 
@@ -133,11 +135,3 @@ struct Buttons: View {
 
 
 
-
-
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView(mainVM: MainViewModel(gameMng: WordGameManager(service: WordService())))
-//    }
-//}

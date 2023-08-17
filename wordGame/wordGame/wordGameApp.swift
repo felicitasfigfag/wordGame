@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct wordGameApp: App {
+    @StateObject private var appState = AppState()
+    
     private let wordService = WordService()
     private(set) var gameMng: WordGameManager
     private var mainVM: MainViewModel
@@ -21,7 +23,21 @@ struct wordGameApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(mainVM: mainVM, gameMng: gameMng)
+            if appState.showingSplash {
+                SplashScreen(appState: appState)
+            } else {
+                ContentView(mainVM: mainVM, gameMng: gameMng)
+            }
+        }
+    }
+}
+
+class AppState: ObservableObject {
+    @Published var showingSplash: Bool = true
+
+    init() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.showingSplash = false
         }
     }
 }

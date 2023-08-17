@@ -62,7 +62,6 @@ class MainViewModel : ObservableObject {
             return
         }
         self.shownPair = randomPair
-        startTimer()
     }
     
     func startTimer() {
