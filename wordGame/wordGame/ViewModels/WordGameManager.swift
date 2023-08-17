@@ -40,6 +40,10 @@ class WordGameManager {
     func getRandomPair() -> WordPair? {
         if unshownIndices.isEmpty {
             setUnshownIndices()
+            // Check if unshownIndices is still empty after attempting to set it
+            if unshownIndices.isEmpty {
+                return nil
+            }
         }
 
         let randomPosition = Int.random(in: 0..<unshownIndices.count)
@@ -48,20 +52,22 @@ class WordGameManager {
         
         // Decide if the pair will be shown as correct or incorrect
         let isCorrect = Double.random(in: 0...1) <= 0.25
-        
+        guard randomIndex < wordPairs.count else { return nil }
         var selectedPair = wordPairs[randomIndex]
         
         if isCorrect {
             selectedPair.correct = true
             return selectedPair
         } else {
-            // Choose a random translated word for incorrect pairing
+            // Make sure wordPairs is not empty before getting a random index
+            guard !wordPairs.isEmpty else { return nil }
             let incorrectTranslatedIndex = Int.random(in: 0..<wordPairs.count)
             selectedPair.translation = wordPairs[incorrectTranslatedIndex].translation
             selectedPair.correct = false
             return selectedPair
         }
     }
+
 
     
 }
