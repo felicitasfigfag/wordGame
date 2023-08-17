@@ -24,6 +24,7 @@
 		192BB0B42A8E6B10008172FB /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0B32A8E6B10008172FB /* MainViewModelTests.swift */; };
 		192BB0B62A8E6BE6008172FB /* WordGameManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0B52A8E6BE6008172FB /* WordGameManagerMock.swift */; };
 		192BB0B92A8E783B008172FB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0B82A8E783B008172FB /* UserDefaultsManager.swift */; };
+		192BB0BB2A8E7B66008172FB /* UserDefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192BB0BA2A8E7B66008172FB /* UserDefaultsManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		192BB0B32A8E6B10008172FB /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		192BB0B52A8E6BE6008172FB /* WordGameManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameManagerMock.swift; sourceTree = "<group>"; };
 		192BB0B82A8E783B008172FB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		192BB0BA2A8E7B66008172FB /* UserDefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				192BB07F2A8BB96E008172FB /* wordGameTests.swift */,
 				192BB0AF2A8E64D9008172FB /* WordGameManagerTests.swift */,
 				192BB0B32A8E6B10008172FB /* MainViewModelTests.swift */,
+				192BB0BA2A8E7B66008172FB /* UserDefaultsManagerTests.swift */,
 			);
 			path = wordGameTests;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			files = (
 				192BB0B42A8E6B10008172FB /* MainViewModelTests.swift in Sources */,
 				192BB0802A8BB96E008172FB /* wordGameTests.swift in Sources */,
+				192BB0BB2A8E7B66008172FB /* UserDefaultsManagerTests.swift in Sources */,
 				192BB0B02A8E64D9008172FB /* WordGameManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
