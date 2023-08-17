@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var mainVM : MainViewModel
-    let wordVM: WordViewModel
+    let gameMng: WordGameManager
         
-    init(mainVM: MainViewModel, wordVM: WordViewModel){
+    init(mainVM: MainViewModel, gameMng: WordGameManager){
         self.mainVM = mainVM
-        self.wordVM = wordVM
+        self.gameMng = gameMng
     }
     
     var body: some View {
@@ -130,6 +130,6 @@ struct Buttons: View {
 //
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ContentView(mainVM: MainViewModel(wordVM: WordViewModel(service: WordService())))
+//        ContentView(mainVM: MainViewModel(gameMng: WordGameManager(service: WordService())))
 //    }
 //}

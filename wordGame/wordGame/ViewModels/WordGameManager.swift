@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WordViewModel {
+class WordGameManager {
     private var wordService: WordServiceProtocol
     var wordPairs: [WordPair] = []
     var unshownIndices: [Int] = []

@@ -10,18 +10,18 @@ import SwiftUI
 @main
 struct wordGameApp: App {
     private let wordService = WordService()
-    private(set) var wordVM: WordViewModel
+    private(set) var gameMng: WordGameManager
     private var mainVM: MainViewModel
 
     init() {
-        self.wordVM = WordViewModel(service: wordService)
-        self.mainVM = MainViewModel(wordVM: self.wordVM)
+        self.gameMng = WordGameManager(service: wordService)
+        self.mainVM = MainViewModel(gameMng: self.gameMng)
         
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView(mainVM: mainVM, wordVM: wordVM)
+            ContentView(mainVM: mainVM, gameMng: gameMng)
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class MainViewModel : ObservableObject {
     
-    var wordVM: WordViewModel
+    var gameMng: WordGameManager
     @Published var correctAttempts: Int = 0
     @Published var wrongAttempts: Int = 0
     @Published var originalWord: String = "This is an English word"
@@ -24,12 +24,12 @@ class MainViewModel : ObservableObject {
     @Published var showError: Bool = false
     @Published var errorMessage: String = ""
     
-    init(wordVM: WordViewModel) {
-        self.wordVM = wordVM
+    init(gameMng: WordGameManager) {
+        self.gameMng = gameMng
         setupGame()
     }
     func setupGame() {
-        let result = wordVM.loadWords()
+        let result = gameMng.loadWords()
         switch result {
         case .success:
             setShownPair()
@@ -39,7 +39,7 @@ class MainViewModel : ObservableObject {
     }
 
     func setShownPair(){
-        guard let randomPair = wordVM.getRandomPair() else {
+        guard let randomPair = gameMng.getRandomPair() else {
             return
         }
         self.shownPair = randomPair
