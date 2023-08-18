@@ -45,7 +45,7 @@ For this project, I'm using MVVM because it provides a clear separation between 
 
 **Data persistence:**
 
-I wanted to implement data persistence to save the user's progress since there aren't many word pairs, and I aimed to prevent the repetition of the same words upon re-entry. The app saves the user's progress in attempts and loads them when the app is launched, as well as the indices of words already shown to avoid their repetition. I decided on UserDefaults as it is and efficient way to store lightweight user preferences or settings.
+I wanted to implement data persistence to save the user's progress since there aren't many word pairs, and I aimed to prevent the repetition of the same words upon re-entry. The app saves the user's progress in attempts and loads them when the app is launched, as well as the indices of words already shown to avoid their repetition. I decided on UserDefaults as it is an efficient way to store lightweight user preferences or settings.
 
 ---
 
